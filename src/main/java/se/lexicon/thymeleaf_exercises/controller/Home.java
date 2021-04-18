@@ -34,6 +34,10 @@ public class Home {
         return "contact";
     }
 
+    @GetMapping("/about")
+    public String About(){
+        return "about";
+    }
 
 }
 
