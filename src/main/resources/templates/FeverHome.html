@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Feve Check</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css} "/>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>/head>
+    <style>
+        body{
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+    </style>
+<body>
+<form th:action="@{/feverHome}" method="post"th:object="${tempService}">
+    <div class="form-group">
+       <label>Whats your body Temperature?</label>
+        <select class="form-control">
+            <option value=""></option>
+            <option th:value="${tempService.fever}">Fever</option>
+            <option th:value="${tempService.normaltemp}">Normal Temperature</option>
+            <option th:value="${tempService.hypothermia}">Hypothermia</option>
+        </select>
+        </div>
+</form>
+</div>
+        <button type="button" class="btn btn-primary btn-lg btn-block" >CHECK</button>
+
+
+
+</body>
+</html>

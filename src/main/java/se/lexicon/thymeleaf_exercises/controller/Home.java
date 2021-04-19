@@ -3,15 +3,22 @@ package se.lexicon.thymeleaf_exercises.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import se.lexicon.thymeleaf_exercises.dto.Contact;
 
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class Home {
-    List<String>store=new ArrayList<String>();
-    String contact=null;
+   List<Contact>contactList=new ArrayList<>();
+
+   @PostConstruct
+   public void init(){
+       contactList=new ArrayList<>();
+
+   }
 
     @GetMapping("/index")
     public String Index() {
@@ -19,19 +26,17 @@ public class Home {
     }
 
     @GetMapping("/contact")
-    public String Contact(){
+    public String Contact(Model model){
+       Contact contact=new Contact();
+       model.addAttribute("contact",contact);
         return "contact";
 
     }
-    @PostMapping("/contact")
-    public String addContact(@RequestParam(value = "contact")String contact, Model model){
-        store.add(contact);
-        return "redirect:/contact";
-    }
-    @RequestMapping(value = "/contact/contact",method = RequestMethod.GET)
-    public String Listofcontacts(Model model){
-        model.addAttribute("contacts",store);
-        return "contact";
+    @GetMapping("/contactList")
+    public String contactList(Model model){
+    model.addAttribute("contactList",contactList);
+       return "contact";
+
     }
 
     @GetMapping("/about")
